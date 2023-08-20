@@ -49,11 +49,5 @@ if (urlParams.has('inputValue')) {
   address.value = inputValue;
 
   // Simulate pressing the Enter key
-  const enterKeyEvent = new KeyboardEvent('keydown', {
-    key: 'Enter',
-    keyCode: 13,
-    which: 13,
-    bubbles: true,
-  });
-  address.dispatchEvent(enterKeyEvent);
+  form.submit();
 }
