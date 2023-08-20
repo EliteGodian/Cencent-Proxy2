@@ -56,3 +56,4 @@ const yourFunction = async () => {
   await delay(3000);
   form.submit();
 };
+yourFunction();
