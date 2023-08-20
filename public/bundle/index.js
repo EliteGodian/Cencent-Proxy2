@@ -51,7 +51,6 @@ form.addEventListener("submit", async (event) => {
   // Redirect to the URL
   location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
 });
-form.submit();
 const yourFunction = async () => {
   await delay(3000);
   form.submit();
