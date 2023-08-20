@@ -20,6 +20,29 @@ const error = document.getElementById("uv-error");
  */
 const errorCode = document.getElementById("uv-error-code");
 
+
+
+// Add a submit event listener to the form
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  try {
+    await registerSW();
+  } catch (err) {
+    error.textContent = "Failed to register service worker.";
+    errorCode.textContent = err.toString();
+    throw err;
+  }
+
+  // Get the filled out value from the 'uv-address' input
+  const inputAddressValue = address.value;
+
+  // Create the search URL using the filled out value and search engine
+  const url = search(inputAddressValue, searchEngine.value);
+
+  // Redirect to the URL
+  location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
+});
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.has('inputValue')) {
   const inputValue = urlParams.get('inputValue');
@@ -34,23 +57,3 @@ if (urlParams.has('inputValue')) {
   });
   address.dispatchEvent(enterKeyEvent);
 }
-
-// Add a submit event listener to the form
-
-
-try {
-    await registerSW();
-} catch (err) {
-    error.textContent = "Failed to register service worker.";
-    errorCode.textContent = err.toString();
-    throw err;
-}
-
-  // Get the filled out value from the 'uv-address' input
-const inputAddressValue = address.value;
-
-  // Create the search URL using the filled out value and search engine
-const url = search(inputAddressValue, searchEngine.value);
-
-  // Redirect to the URL
-location.href = __uv$config.prefix + __uv$config.encodeUrl(
