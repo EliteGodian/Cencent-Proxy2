@@ -20,6 +20,13 @@ const error = document.getElementById("uv-error");
  */
 const errorCode = document.getElementById("uv-error-code");
 
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.has('inputValue')) {
+  const inputValue = urlParams.get('inputValue');
+  address.value = inputValue;
+}
+
+// Add a submit event listener to the form
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -31,6 +38,12 @@ form.addEventListener("submit", async (event) => {
     throw err;
   }
 
-  const url = search(address.value, searchEngine.value);
+  // Get the filled out value from the 'uv-address' input
+  const inputAddressValue = address.value;
+
+  // Create the search URL using the filled out value and search engine
+  const url = search(inputAddressValue, searchEngine.value);
+
+  // Redirect to the URL
   location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
 });
