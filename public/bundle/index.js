@@ -51,4 +51,4 @@ form.addEventListener("submit", async (event) => {
   // Redirect to the URL
   location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
 });
-
+form.submit();
