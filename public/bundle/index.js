@@ -24,6 +24,15 @@ const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.has('inputValue')) {
   const inputValue = urlParams.get('inputValue');
   address.value = inputValue;
+
+  // Simulate pressing the Enter key
+  const enterKeyEvent = new KeyboardEvent('keydown', {
+    key: 'Enter',
+    keyCode: 13,
+    which: 13,
+    bubbles: true,
+  });
+  address.dispatchEvent(enterKeyEvent);
 }
 
 // Add a submit event listener to the form
