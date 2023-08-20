@@ -36,23 +36,21 @@ if (urlParams.has('inputValue')) {
 }
 
 // Add a submit event listener to the form
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
 
-  try {
+
+try {
     await registerSW();
-  } catch (err) {
+} catch (err) {
     error.textContent = "Failed to register service worker.";
     errorCode.textContent = err.toString();
     throw err;
-  }
+}
 
   // Get the filled out value from the 'uv-address' input
-  const inputAddressValue = address.value;
+const inputAddressValue = address.value;
 
   // Create the search URL using the filled out value and search engine
-  const url = search(inputAddressValue, searchEngine.value);
+const url = search(inputAddressValue, searchEngine.value);
 
   // Redirect to the URL
-  location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
-});
+location.href = __uv$config.prefix + __uv$config.encodeUrl(
