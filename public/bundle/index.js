@@ -24,9 +24,10 @@ const urlParams = new URLSearchParams(window.location.search);
 
 
 
-  // Simulate pressing the Enter key
+// Simulate pressing the Enter key
   
-
+const inputValue = urlParams.get('inputValue');
+address.value = inputValue;
 
 
 // Add a submit event listener to the form
@@ -40,10 +41,9 @@ form.addEventListener("submit", async (event) => {
     errorCode.textContent = err.toString();
     throw err;
   }
-  const inputValue = urlParams.get('inputValue');
-  address.value = inputValue;
+  
   // Get the filled out value from the 'uv-address' input
-  const inputAddressValue = inputValue;
+  const inputAddressValue = address.value;
 
   // Create the search URL using the filled out value and search engine
   const url = search(inputAddressValue, searchEngine.value);
@@ -51,8 +51,7 @@ form.addEventListener("submit", async (event) => {
   // Redirect to the URL
   location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
 });
-const yourFunction = async () => {
-  await delay(3000);
-  form.submit();
-};
-yourFunction();
+setTimeout(function() {
+  form.submit()
+}, 2000);
+
